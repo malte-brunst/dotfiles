@@ -1,0 +1,90 @@
+# set the PS1
+PS1=' \u@\h \w [\j] $ '
+
+# set the umask for 600 default permissions
+umask 077
+
+# add user-specific directories to PATH
+PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+# If you have the azure functions core tools installed, add them to the path
+[[ -d "${HOME}/bin/azure-functions-cli" ]] && PATH="${HOME}/bin/azure-functions-cli:${PATH}"
+export PATH
+
+# set bash internal environment variables
+export HISTFILE="${HOME}/.bash_history"
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export HISTCONTROL=ignoreboth
+export HISTTIMEFORMAT="%F %T "
+export HISTIGNORE="ls:[bf]g:exit:pwd:clear"
+
+# set the standard XDG_CONFIG_HOME environment variable
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
+# set some basic environment variables
+export LESSHISTFILE="${XDG_DATA_HOME}/lesshst"
+export SUDO_EDITOR=vim
+export EDITOR=vim
+export VISUAL=vim
+export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
+export LESS="-eirMX"
+
+# Source the git bash completion files, if they exist -- needs to happen before sourcing bash aliases
+[[ -f "/etc/bash_completion.d/git" ]] && . "/etc/bash_completion.d/git"
+[[ -f "/usr/share/bash-completion/completions/git" ]] && . "/usr/share/bash-completion/completions/git"
+
+# If there is a bash functions file, source it
+[[ -f "${HOME}/.bash_functions" ]] && . "${HOME}/.bash_functions"
+
+# If there is an alias file, source it
+[[ -f "${HOME}/.bash_aliases" ]] && . "${HOME}/.bash_aliases"
+
+# set the shell options (=shopt)
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s complete_fullquote
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s globstar
+shopt -s extquote
+shopt -s force_fignore
+shopt -s globasciiranges
+shopt -s histappend
+shopt -s hostcomplete
+shopt -s interactive_comments
+shopt -s progcomp
+shopt -s promptvars
+shopt -s sourcepath
+
+# setup minifore3 / conda , if exists
+[[ -d "${HOME}/miniforge3" ]] && . "${HOME}/miniforge3/etc/profile.d/conda.sh"
+
+# what the nix installer automatically adds to the .profile by default
+if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then . "${HOME}/.nix-profile/etc/profile.d/nix.sh"; fi
+
+# setup oh-my-posh, if exists
+if command -v oh-my-posh >/dev/null; then
+    eval "$(oh-my-posh init bash --config "${XDG_CONFIG_HOME}/oh_my_posh/my_oh_my_posh_theme.json")"
+fi
+
+# setup fzf, if exists
+if command -v oh-my-posh >/dev/null; then
+    export FZF_DEFAULT_COMMAND='fd . --hidden --exclude ".git"'
+    source "${XDG_CONFIG_HOME}/fzf/completion.bash"
+    source "${XDG_CONFIG_HOME}/fzf//key-bindings.bash"
+fi
+
+# setup direnv, if exists
+if command -v direnv >/dev/null; then
+    eval "$(direnv hook bash)"
+fi
+
+# setup uv, if exists
+if command -v uv >/dev/null; then
+    eval "$(uv generate-shell-completion bash)"
+fi

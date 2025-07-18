@@ -1,0 +1,6 @@
+# simply source the ~/.bashrc file when running bash
+if [[ "${BASH_VERSION}" ]]; then
+    if [[ -f "${HOME}"/.bashrc ]]; then
+        . "${HOME}"/.bashrc
+    fi
+fi

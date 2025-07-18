@@ -1,0 +1,42 @@
+# run a command in the background
+run() {
+    if [[ ${#} -eq 0 ]]; then
+        echo "Please provide a program to run." >&2
+        return 1
+    else
+        nohup "${@}" >/dev/null 2>&1 &
+    fi
+}
+export -f run
+
+fzf_preview() {
+    fzf --preview 'bat --color=always {}'
+}
+
+fzf_explorer() {
+    fd --type d | fzf --multi --height=80% --border=sharp \
+        --preview='tree -C {}' --preview-window='45%,border-sharp' \
+        --prompt='Dirs > ' \
+        --bind='del:execute(rm -ri {+})' \
+        --bind='ctrl-s:toggle-preview' \
+        --bind='ctrl-d:change-prompt(Dirs > )' \
+        --bind='ctrl-d:+reload(find -type d)' \
+        --bind='ctrl-d:+change-preview(tree -C {})' \
+        --bind='ctrl-d:+refresh-preview' \
+        --bind='ctrl-f:change-prompt(Files > )' \
+        --bind='ctrl-f:+reload(find -type f)' \
+        --bind='ctrl-f:+change-preview(cat {})' \
+        --bind='ctrl-f:+refresh-preview' \
+        --bind='ctrl-a:select-all' \
+        --bind='ctrl-x:deselect-all' \
+        --header '
+    CTRL-D to display directories | CTRL-F to display files
+    CTRL-A to select all | CTRL-x to deselect all
+    ENTER to insert | DEL to delete
+    CTRL-S to toggle preview
+    '
+}
+
+fzf_env() {
+    printenv | fzf
+}

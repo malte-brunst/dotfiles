@@ -1,0 +1,5 @@
+[user]
+  name = Malte Brunst
+  email = malte.brunst@m-bi.com
+[core]
+  sshCommand="ssh -i ~/.ssh/id_rsa_m-bi"
