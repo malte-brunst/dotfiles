@@ -1,9 +1,9 @@
-alias ls='ls -hlt --color=auto'  # always show long directory listing
-alias la='ls -halt --color=auto' # dito
-alias grep='grep --color=auto'   # enable colored output for grep
-alias dirs='dirs -l -p -v'       # list the directory stack without tilde and on separate lines that are numberated
-alias sudo='sudo -v; sudo -E '   # when running a sudo command refresh the timeout
-alias info='info -vi-keys'       # Use vi keybindings in the info program
+alias ls='exa -l --sort modified -r'
+alias la='exa -al --sort modified -r'
+alias grep='grep --color=auto' # enable colored output for grep
+alias dirs='dirs -l -p -v'     # list the directory stack without tilde and on separate lines that are numberated
+alias sudo='sudo -v; sudo -E ' # when running a sudo command refresh the timeout
+alias info='info -vi-keys'     # Use vi keybindings in the info program
 alias g='git'
 __git_complete g __git_main # such that git completion still works with the alias
 alias n='nvim'
