@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Examples of call:
-# git-init-bare-for-worktrees
+# git_init_bare_for_worktrees.bash
 # => Creates a bare git repo in the current directory with a .bare directory and prepares it for worktrees
 
 # Get globally configured user name and email

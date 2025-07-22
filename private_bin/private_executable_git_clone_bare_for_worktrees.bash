@@ -5,11 +5,11 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Examples of call:
-# git-clone-bare-for-worktrees git@github.com:name/repo.git
+# git_clone_bare_for_worktrees.bash git@github.com:name/repo.git
 # => Clones to a /repo directory
 #
-# git-clone-bare-for-worktrees git@github.com:name/repo.git my-repo
-# => Clones to a /my-repo directory
+# git_clone_bare_for_worktrees.bash git@github.com:name/repo.git my_repo
+# => Clones to a /my_repo directory
 
 url=$1
 basename=${url##*/}
