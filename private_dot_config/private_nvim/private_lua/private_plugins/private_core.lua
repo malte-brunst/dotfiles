@@ -1,4 +1,4 @@
-vim.api.nvim_set_hl(0, "LineNr", { fg = "orange", bg = "black" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#f38ba8", bg = "black" })
 
 return {
   {

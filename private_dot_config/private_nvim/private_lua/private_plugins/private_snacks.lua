@@ -6,6 +6,9 @@ return {
         explorer = {
           layout = { layout = { position = "right" } },
         },
+        notifications = {
+          win = { preview = { wo = { wrap = true } } },
+        },
       },
     },
   },
