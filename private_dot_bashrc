@@ -5,7 +5,7 @@ PS1=' \u@\h \w [\j] $ '
 umask 077
 
 # add user-specific directories to PATH
-PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:${PATH}"
 # If you have the azure functions core tools installed, add them to the path
 [[ -d "${HOME}/bin/azure-functions-cli" ]] && PATH="${HOME}/bin/azure-functions-cli:${PATH}"
 export PATH
@@ -95,6 +95,7 @@ if command -v uv >/dev/null; then
 fi
 
 # setup kubectl, if exists
+# shellcheck source=/dev/null
 if command -v kubectl >/dev/null; then
 	source <(kubectl completion bash)
 fi
