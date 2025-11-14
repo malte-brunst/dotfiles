@@ -1,16 +1,6 @@
 return {
-  "neovim/nvim-lspconfig",
-  opts = {
-    servers = {
-      gopls = {
-        settings = {
-          gopls = {
-            hints = {
-              parameterNames = false,
-            },
-          },
-        },
-      },
-    },
-  },
+	"neovim/nvim-lspconfig",
+	opts = {
+		inlay_hints = { enabled = false },
+	},
 }

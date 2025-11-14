@@ -129,6 +129,14 @@
           "background": "#cba6f7",
           "type": "python",
           "style": "powerline"
+        },
+        {
+          "type": "go",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#ffffff",
+          "background": "#7FD5EA",
+          "template": "  {{ .Full }} "
         }
       ]
     },
